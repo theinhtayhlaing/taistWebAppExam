@@ -36,6 +36,20 @@
    
 function showPosition(position) {
      page.querySelector('#latlng').innerHTML = "Latitude:" + position.coords.latitude + "<br>Longitude:" + position.coords.longitude;
+     const Url = 'https://theinhtayhlaing-taist-demo.firebaseio.com/logs.jason';
+     let Data = {
+       latitude:position.coords.latitude,
+       longgitude:position.coords.longitude
+     };
+     const Params = {
+       headers:{
+         'Content-Type':'application/json'
+       },
+       body:JSON.stringify(Data),
+       method:'Post'
+     };
+     console.log(JSON.stringify(Data));
+     fetch(Url,Params).then(data=>{return data.json();}).then(res=>{console.log(res);}); 
 }
   
   if (page.id === 'page1') {
